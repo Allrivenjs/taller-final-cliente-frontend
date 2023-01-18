@@ -3,7 +3,7 @@ import { config } from '../config';
 
 const axiosClient = axios.create({
 	baseURL: `${config.API_URL}/api/`,
-	headers: config.headers,
+	// headers: config.headers,
 });
 
 axiosClient.interceptors.request.use( async (config) => {

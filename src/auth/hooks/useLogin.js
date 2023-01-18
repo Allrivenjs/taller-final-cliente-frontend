@@ -18,6 +18,7 @@ export const useLogin = () => {
   const [loading, setLoading] = useState(true);
   const setStatus = useUserStore((userStore) => userStore.setStatus);
   const setUser = useUserStore((userStore) => userStore.setUser);
+  const setToken = useUserStore((userStore) => userStore.setToken);
 
   const onSubmit = handleSubmit(async ({ username, password }) => {
     setStatus('verifiying');
@@ -28,13 +29,19 @@ export const useLogin = () => {
         username,
         password,
       });
-      console.log('res: ', res);
+      console.log('res: ', res.data);
 
       setUser(res.data.user);
+      setToken(res.data.token);
+
       setStatus('logged');
     } catch (e) {
       alert('Error al iniciar sesión');
       console.log('error on login request: ', e);
+
+      setUser(null);
+      setToken('');
+
       setStatus('not-logged');
     }
     setLoading(false);

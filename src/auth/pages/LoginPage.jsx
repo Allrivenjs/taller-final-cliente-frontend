@@ -4,19 +4,19 @@ import {
   FormControl,
   FormLabel,
   Input,
-  Checkbox,
   Stack,
-  Link,
   Button,
   Heading,
   Text,
   useColorModeValue,
 } from '@chakra-ui/react';
+import { AppLink } from '../../components';
 
 import { useLogin } from '../hooks/useLogin';
 
 export const LoginPage = () => {
   const { loading, register, onSubmit } = useLogin();
+
   return (
     <Flex
       minH={'100vh'}
@@ -28,7 +28,7 @@ export const LoginPage = () => {
         <Stack align={'center'}>
           <Heading fontSize={'4xl'}>Sign in to your account</Heading>
           <Text fontSize={'lg'} color={'gray.600'}>
-            to enjoy all of our cool <Link color={'blue.400'}>features</Link> ✌️
+            to enjoy all of our cool features ✌️
           </Text>
         </Stack>
         <Box
@@ -50,10 +50,11 @@ export const LoginPage = () => {
               <Stack
                 direction={{ base: 'column', sm: 'row' }}
                 align={'start'}
-                justify={'space-between'}
               >
-                <Checkbox>Remember me</Checkbox>
-                <Link color={'blue.400'}>Forgot password?</Link>
+                <Text>¿No tienes cuenta?</Text>
+
+                <AppLink to='/auth/register' text='Register' />
+
               </Stack>
               <Button
                 bg={'blue.400'}
