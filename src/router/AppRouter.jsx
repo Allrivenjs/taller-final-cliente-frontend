@@ -1,6 +1,9 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { useCheckAuth } from '../auth/hooks/useCheckAuth';
+
+import { AppRoutes } from '../app/routes/AppRoutes';
 import { AuthRoutes } from '../auth/routes/AuthRoutes';
+
 import { SpinnerPage } from '../components';
 
 export const AppRouter = () => {
@@ -11,7 +14,7 @@ export const AppRouter = () => {
   return (
     <Routes>
       {status === 'logged' ? (
-        <Route path='/*' element={<>authenticated</>} />
+        <Route path='/*' element={<AppRoutes />} />
       ) : (
         <Route path='/auth/*' element={<AuthRoutes />} />
       )}
