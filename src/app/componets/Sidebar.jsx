@@ -17,7 +17,6 @@ import {
   useDisclosure,
   Menu,
   MenuButton,
-  MenuDivider,
   MenuItem,
   MenuList,
   useColorMode,
@@ -218,7 +217,7 @@ const MobileNav = ({ onOpen, ...rest }) => {
                   spacing='1px'
                   ml='2'
                 >
-                  <Text fontSize='sm'>{user.nombres} {user.apellidos}</Text>
+                  <Text fontSize='sm'>{user?.nombres} {user?.apellidos}</Text>
                   <Text fontSize='xs' color='gray.600'>
                     Admin
                   </Text>

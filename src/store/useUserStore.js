@@ -20,16 +20,14 @@ export const useUserStore = create((set) => ({
 
     const localUser = JSON.parse(localStorage.getItem('user'));
 
-    console.log(localUser);
-
     try {
-      const res = await axiosClient.get('actas');
-      console.log(res);
-
-      set({ status: 'logged' });
+      await axiosClient.get('actas');
+      set({ user: localUser, status: 'logged' });
     } catch (e) {
       console.error('no hay sesión');
       set({ status: 'not-logged' });
     }
   },
 }));
+
+export const useUser = () => useUserStore((store) => store.user);

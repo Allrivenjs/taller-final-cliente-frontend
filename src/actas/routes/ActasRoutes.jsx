@@ -1,11 +1,12 @@
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
-import { ListActas } from '../pages/ListActas';
+import { ListActas, CreateActas } from '../pages';
 
 export const ActasRoutes = () => {
   return (
     <Routes>
-      <Route path='/' element={ <ListActas /> }/>
+      <Route path='/' element={<ListActas />} />
+      <Route path='/create' element={<CreateActas />} />
     </Routes>
-  )
-}
+  );
+};
