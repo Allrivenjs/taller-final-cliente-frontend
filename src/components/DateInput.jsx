@@ -1,6 +1,6 @@
 import { FormControl, FormLabel, Input } from '@chakra-ui/react';
 
-export const DateInput = ({ label, onChange, placeholder }) => {
+export const DateInput = ({ label, onChange, placeholder, justHour }) => {
   const onChangeInput = (e) => {
     onChange(new Date(e.target.value).toISOString());
   };

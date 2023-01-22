@@ -11,6 +11,9 @@ export const useListActas = () => {
 
     try {
       const res = await axiosClient.get('actas');
+      console.log({...res.data});
+
+      setActas(res.data)
 
       console.log('res: ', res);
     } catch (e) {
@@ -27,5 +30,6 @@ export const useListActas = () => {
   return {
     loading,
     actas,
+    setActas,
   };
 };

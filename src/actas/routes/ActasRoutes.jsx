@@ -7,6 +7,7 @@ export const ActasRoutes = () => {
     <Routes>
       <Route path='/' element={<ListActas />} />
       <Route path='/create' element={<CreateActas />} />
+      <Route path='/edit/:id' element={<CreateActas isEdit />} />
     </Routes>
   );
 };

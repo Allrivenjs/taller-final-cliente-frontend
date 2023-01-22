@@ -1,10 +1,12 @@
 import { Box, Button, Divider, Heading, HStack } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
+import { ActasTable } from '../components/ActasTable';
 
 import { useListActas } from '../hooks/useListActas';
 
 export const ListActas = () => {
-  const { loading, actas } = useListActas();
+  const { loading, actas, setActas } = useListActas();
+
   return (
     <Box>
       <HStack alignItems='center' justifyContent='space-between' mb={4}>
@@ -14,7 +16,17 @@ export const ListActas = () => {
         </Button>
       </HStack>
       <Divider />
-      <Box></Box>
+
+      {
+        loading ? (
+          <>loading</>
+        ) : (
+          <ActasTable
+            actas={actas}
+            setActas={setActas}
+          />
+        )
+      }
     </Box>
   );
 };

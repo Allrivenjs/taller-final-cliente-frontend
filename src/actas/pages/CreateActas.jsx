@@ -22,13 +22,13 @@ import { UsersSelect } from '../../components';
 import { useCreateActas } from '../hooks';
 import { DateInput } from '../../components/DateInput';
 
-export const CreateActas = () => {
-  const { loading, register, control, onSubmit } = useCreateActas();
+export const CreateActas = ({isEdit = false}) => {
+  const { loading, register, control, onSubmit } = useCreateActas(isEdit);
 
   return (
     <Box>
       <HStack alignItems='center' justifyContent='space-between' mb={4}>
-        <Heading size='lg'>Crear actas</Heading>
+        <Heading size='lg'>{isEdit ? 'Editar' : 'Crear'} actas</Heading>
         <Button colorScheme='blue' as={Link} to='/actas'>
           Lista de actas
         </Button>

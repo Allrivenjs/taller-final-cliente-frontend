@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
 
 import { useForm } from 'react-hook-form';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { axiosClient } from '../../lib';
 
 import { useUser } from '../../store';
 
-export const useCreateActas = () => {
+export const useCreateActas = (isEdit) => {
   const {
     control,
     register,
@@ -26,11 +27,15 @@ export const useCreateActas = () => {
     },
   });
 
+  const navigate = useNavigate();
+  const { id } = useParams();
+  console.log(id);
+
   const [loading, setLoading] = useState(false);
 
   const currentUser = useUser();
 
-  const onSubmit = handleSubmit(async (acta) => {
+  const onCreate = async (acta) => {
     setLoading(true);
 
     console.log({ ...acta });
@@ -39,13 +44,36 @@ export const useCreateActas = () => {
       const res = await axiosClient.post('actas', {
         ...acta,
       });
+      navigate('/actas');
+
       console.log('res: ', res.data);
     } catch (e) {
       alert('Error al crear el acta');
       console.log('error on post acta: ', e);
     }
     setLoading(false);
-  });
+  };
+
+  const onEdit = async (acta) => {
+    setLoading(true);
+
+    console.log({ ...acta });
+
+    try {
+      const res = await axiosClient.post(`actas/`, {
+        ...acta,
+      });
+      navigate('/actas');
+
+      console.log('res: ', res.data);
+    } catch (e) {
+      alert('Error al crear el acta');
+      console.log('error on post acta: ', e);
+    }
+    setLoading(false);
+  }
+
+  const onSubmit = handleSubmit(isEdit ? onEdit : onCreate);
 
   useEffect(() => {
     setValue('creador_id', currentUser.id);
