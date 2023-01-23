@@ -8,26 +8,19 @@ import {
   Spinner,
 } from '@chakra-ui/react';
 
-import { axiosClient } from '../lib';
-import { useUser } from '../store';
+import { useLoadingUsers, useUser, useUsers, useUsersActions } from '../store/';
 
 export const UsersSelect = ({ label, placeholder, onChange }) => {
-  const [loading, setLoading] = useState(true);
-  const [users, setUsers] = useState([]);
+  // const currentUser = useUser();
 
-  const currentUser = useUser();
-
-  const fetchUsers = async () => {
-    setLoading(true);
-    const res = await axiosClient.get('usuarios');
-    if (res.data.length > 0) {
-      setUsers(res.data.filter((user) => user.id !== currentUser.id));
-    }
-    setLoading(false);
-  };
+  const loading = useLoadingUsers();
+  const users = useUsers();
+  const { fetchUsers } = useUsersActions();
 
   useEffect(() => {
-    fetchUsers();
+    if (!users.length > 0) {
+      fetchUsers();
+    }
   }, []);
 
   const onChangeInput = (e) => {

@@ -26,8 +26,6 @@ import {
   FiHome,
   FiTrendingUp,
   FiCompass,
-  FiStar,
-  FiSettings,
   FiMenu,
   FiChevronDown,
 } from 'react-icons/fi';
@@ -37,9 +35,7 @@ import { useUserStore } from '../../store/useUserStore';
 const LinkItems = [
   { name: 'Inicio', icon: FiHome, to: '/' },
   { name: 'Actas', icon: FiTrendingUp, to: '/actas/' },
-  // { name: 'Explore', icon: FiCompass },
-  // { name: 'Favourites', icon: FiStar },
-  // { name: 'Settings', icon: FiSettings },
+  { name: 'Compromisos', icon: FiCompass, to: '/compromisos/' },
 ];
 
 export const Sidebar = ({ children }) => {
@@ -217,7 +213,9 @@ const MobileNav = ({ onOpen, ...rest }) => {
                   spacing='1px'
                   ml='2'
                 >
-                  <Text fontSize='sm'>{user?.nombres} {user?.apellidos}</Text>
+                  <Text fontSize='sm'>
+                    {user?.nombres} {user?.apellidos}
+                  </Text>
                   <Text fontSize='xs' color='gray.600'>
                     Admin
                   </Text>

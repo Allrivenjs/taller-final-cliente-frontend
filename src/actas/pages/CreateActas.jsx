@@ -70,7 +70,7 @@ export const CreateActas = ({isEdit = false}) => {
             <Controller
               control={control}
               name='hora_inicio'
-              render={({ field: { onChange } }) => (
+              render={({ field: { onChange, value } }) => (
                 <DateInput
                   onChange={onChange}
                   label='Fecha de inicio'

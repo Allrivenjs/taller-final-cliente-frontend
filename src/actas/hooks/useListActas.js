@@ -1,27 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
-import { axiosClient } from '../../lib';
+import {
+  useActas,
+  useActasActions,
+  useLoading,
+} from '../../store/useActasStore';
 
 export const useListActas = () => {
-  const [loading, setLoading] = useState(true);
-  const [actas, setActas] = useState([]);
-
-  const fetchActas = async () => {
-    setLoading(true);
-
-    try {
-      const res = await axiosClient.get('actas');
-      console.log({...res.data});
-
-      setActas(res.data)
-
-      console.log('res: ', res);
-    } catch (e) {
-      alert('Error al obtener actas del servidor');
-      console.log('error on post acta: ', e);
-    }
-    setLoading(false);
-  };
+  const loading = useLoading();
+  const actas = useActas();
+  const { fetchActas, addActa, deleteActa, toggleLoading } = useActasActions();
 
   useEffect(() => {
     fetchActas();
@@ -30,6 +18,8 @@ export const useListActas = () => {
   return {
     loading,
     actas,
-    setActas,
+    addActa,
+    deleteActa,
+    toggleLoading,
   };
 };

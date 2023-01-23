@@ -15,23 +15,8 @@ import {
 
 import { DeleteIcon, EditIcon } from '@chakra-ui/icons';
 
-import { axiosClient } from '../../lib';
-
-export const ActasTable = ({ actas = [], deleteActas, }) => {
+export const CompromisosTable = ({ compromisos = [], }) => {
   const navigate = useNavigate();
-  const onDeleteActa = async (actaToDeleteId) => {
-    try {
-      await axiosClient.post(`actas/delete/${actaToDeleteId}`);
-      deleteActas(actaToDeleteId);
-    } catch (e) {
-      alert('Error trying to delete acta');
-      console.log('Error trying to delete acta');
-    };
-  };
-
-  const onEditActa = async (id) => {
-    navigate(`/actas/edit/${id}`);
-  };
 
   const onViewActa = async (id) => {
     navigate(`/actas/view/${id}`);
