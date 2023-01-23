@@ -13,16 +13,16 @@ import {
   Text,
 } from '@chakra-ui/react';
 
-import { DeleteIcon, EditIcon } from '@chakra-ui/icons';
+import { EditIcon } from '@chakra-ui/icons';
 
-export const CompromisosTable = ({ compromisos = [], }) => {
+export const CompromisosTable = ({ compromisos = [] }) => {
   const navigate = useNavigate();
 
   const onViewActa = async (id) => {
     navigate(`/actas/view/${id}`);
   };
 
-  if (actas.length < 1) {
+  if (compromisos.length < 1) {
     return (
       <Card mt={4} p={2} py={6} justifyContent='center' alignItems={'center'}>
         <Text colorScheme='gray'>No hay resultados</Text>
@@ -36,48 +36,25 @@ export const CompromisosTable = ({ compromisos = [], }) => {
         <Table variant='simple'>
           <Thead>
             <Tr>
-              <Th>Asunto</Th>
-              <Th>Creador</Th>
-              <Th>Responsable</Th>
-              <Th>Orden del día</Th>
+              <Th>ID</Th>
+              <Th>Descripción</Th>
               <Th>Hora incio</Th>
               <Th>Hora final</Th>
-              <Th>Acciones</Th>
             </Tr>
           </Thead>
           <Tbody>
-            {actas.map(
+            {compromisos.map(
               ({
                 id,
-                asunto,
-                creador,
-                responsable,
-                orden_del_dia,
-                hora_inicio,
-                hora_final,
-              }) => (
-                <Tr key={id}>
-                  <Td>{asunto}</Td>
-                  <Td>{creador.nombres}</Td>
-                  <Td>{responsable.nombres}</Td>
-                  <Td>{orden_del_dia}</Td>
-                  <Td>{hora_inicio}</Td>
-                  <Td>{hora_final}</Td>
+                compromisos
+              }, index) => (
+                <Tr key={index}>
+                  <Td>{compromisos[0].id}</Td>
+                  <Td>{compromisos[0].pivot.descripcion}</Td>
+                  <Td>{compromisos[0].pivot.fecha_inicio}</Td>
+                  <Td>{compromisos[0].pivot.fecha_final}</Td>
                   <Td>
                     <HStack>
-                      <IconButton
-                        size='sm'
-                        colorScheme='red'
-                        icon={<DeleteIcon />}
-                        onClick={() => onDeleteActa(id)}
-                      />
-                      <IconButton
-                        size='sm'
-                        colorScheme='blue'
-                        icon={<EditIcon />}
-                        onClick={() => onEditActa(id)}
-                      />
-
                       <IconButton
                         size='sm'
                         colorScheme='green'

@@ -1,19 +1,11 @@
-import {
-  Box,
-  Card,
-  Divider,
-  Heading,
-  HStack,
-  Spinner,
-} from '@chakra-ui/react';
+import { Box, Card, Divider, Heading, HStack, Spinner } from '@chakra-ui/react';
 
 import { CompromisosTable } from '../components/CompromisosTable';
 
 import { useListCompromisos } from '../hooks/useListCompromisos';
 
-
 export const ListCompromisos = () => {
-  const { loading, compromisos, setLoading } = useListCompromisos();
+  const { loading, actasWithCompromisos } = useListCompromisos();
 
   return (
     <Box>
@@ -27,10 +19,10 @@ export const ListCompromisos = () => {
           <Spinner />
         </Card>
       ) : (
-<></>
+        <CompromisosTable
+          compromisos={actasWithCompromisos}
+        />
       )}
     </Box>
   );
 };
-
-{/*<CompromisosTable compromisos={compromisos} deleteActas={deleteActa} />*/}
