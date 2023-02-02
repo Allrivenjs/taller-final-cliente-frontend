@@ -52,6 +52,7 @@ export const ActasTable = ({ actas = [], deleteActas, }) => {
         <Table variant='simple'>
           <Thead>
             <Tr>
+              <Th>ID</Th>
               <Th>Asunto</Th>
               <Th>Creador</Th>
               <Th>Responsable</Th>
@@ -77,6 +78,7 @@ export const ActasTable = ({ actas = [], deleteActas, }) => {
                 compromisos
               }) => (
                 <Tr key={id}>
+                  <Td>{id}</Td>
                   <Td>{asunto}</Td>
                   <Td>{creador.nombres}</Td>
                   <Td>{responsable.nombres}</Td>
