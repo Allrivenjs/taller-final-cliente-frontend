@@ -10,9 +10,13 @@ import {
 
 import { useLoadingUsers, useUser, useUsers, useUsersActions } from '../store/';
 
-export const UsersSelect = ({ label, placeholder, onChange }) => {
-  // const currentUser = useUser();
-
+export const UsersSelect = ({
+  label,
+  placeholder,
+  onChange,
+  defaultValue,
+  disabled = false,
+}) => {
   const loading = useLoadingUsers();
   const users = useUsers();
   const { fetchUsers } = useUsersActions();
@@ -34,9 +38,11 @@ export const UsersSelect = ({ label, placeholder, onChange }) => {
         {loading && <Spinner size='xs' />}
       </HStack>
       <Select
-        defaultValue={users.length > 0 ? users[0].id : 0}
+        defaultValue={
+          defaultValue ? defaultValue : users.length > 0 ? users[0].id : 0
+        }
         placeholder={placeholder}
-        disabled={loading}
+        disabled={disabled ? disabled : loading}
         onChange={onChangeInput}
       >
         {users.map(({ nombres, apellidos, id }) => (
