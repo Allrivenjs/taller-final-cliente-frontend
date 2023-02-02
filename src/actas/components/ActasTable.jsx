@@ -44,6 +44,7 @@ export const ActasTable = ({ actas = [], deleteActas, }) => {
       </Card>
     );
   }
+  console.log(actas)
 
   return (
     <Card mt={4} p={2}>
@@ -55,6 +56,8 @@ export const ActasTable = ({ actas = [], deleteActas, }) => {
               <Th>Creador</Th>
               <Th>Responsable</Th>
               <Th>Orden del día</Th>
+              <Th>Asistentes</Th>
+              <Th>Cantidad de compromisos</Th>
               <Th>Hora incio</Th>
               <Th>Hora final</Th>
               <Th>Acciones</Th>
@@ -70,12 +73,16 @@ export const ActasTable = ({ actas = [], deleteActas, }) => {
                 orden_del_dia,
                 hora_inicio,
                 hora_final,
+                asistentes,
+                compromisos
               }) => (
                 <Tr key={id}>
                   <Td>{asunto}</Td>
                   <Td>{creador.nombres}</Td>
                   <Td>{responsable.nombres}</Td>
                   <Td>{orden_del_dia}</Td>
+                  <Td>{asistentes.length > 0 ? asistentes?.map(i => `${i.nombres}, `) : "No hay asistentes"}</Td>
+                  <Td>{compromisos.length}</Td>
                   <Td>{hora_inicio}</Td>
                   <Td>{hora_final}</Td>
                   <Td>
